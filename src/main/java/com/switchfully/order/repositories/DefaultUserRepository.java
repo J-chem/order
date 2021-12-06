@@ -1,6 +1,9 @@
 package com.switchfully.order.repositories;
 
+import com.switchfully.order.domain.Address;
+import com.switchfully.order.domain.TelephoneNumber;
 import com.switchfully.order.domain.User;
+import com.switchfully.order.security.Role;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -13,7 +16,17 @@ public class DefaultUserRepository implements UserRepository {
 
     public DefaultUserRepository() {
         usersById = new ConcurrentHashMap<>();
+        addAdmin();
+    }
 
+    private void addAdmin() {
+        User admin = new User("hardCodeAdmin", "hardCodeAdmin", "email@email.email",
+                new Address("streetName", "streetNumber", "postalCode", "city"),
+                new TelephoneNumber("03", "1234567"),
+                Role.ADMIN,
+                "hardCodeAdmin",
+                "hardCodeAdmin");
+        usersById.put(admin.getId(), admin);
     }
 
     @Override

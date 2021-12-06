@@ -1,6 +1,7 @@
 package com.switchfully.order.repositories;
 
 import com.switchfully.order.domain.Item;
+import com.switchfully.order.services.dto.ItemDTO;
 import org.springframework.stereotype.Repository;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -15,7 +16,8 @@ public class DefaultItemRepository implements ItemRepository {
     }
 
     @Override
-    public void saveItem(Item item) {
+    public Item saveItem(Item item) {
         stockItems.put(item.getId(), item);
+        return item;
     }
 }

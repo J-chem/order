@@ -3,6 +3,7 @@ package com.switchfully.order.services;
 import com.switchfully.order.domain.Item;
 import com.switchfully.order.repositories.ItemRepository;
 import com.switchfully.order.services.dto.CreateItemDTO;
+import com.switchfully.order.services.dto.ItemDTO;
 import com.switchfully.order.services.mappers.ItemMapper;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,9 @@ public class DefaultItemService implements ItemService {
     }
 
     @Override
-    public void saveItem(CreateItemDTO createItemDTO) {
+    public ItemDTO saveItem(CreateItemDTO createItemDTO) {
         Item item = itemMapper.mapDTOToItem(createItemDTO);
-        itemRepository.saveItem(item);
+        Item savedItem = itemRepository.saveItem(item);
+        return itemMapper.mapItemToDTO(savedItem);
     }
 }

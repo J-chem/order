@@ -29,7 +29,7 @@ class UserControllerTest {
     void beforeEach() {
         telephoneNumber = new TelephoneNumber("03", "1234567");
         address = new Address("streetName", "streetNumber", "postalCode", "city");
-        createUserDTO = new CreateUserDTO("firstName", "lastName", address, "email@email.email", telephoneNumber, Role.CUSTOMER);
+        createUserDTO = new CreateUserDTO("firstName", "lastName", address, "email@email.email", telephoneNumber, Role.CUSTOMER, "username", "password");
     }
 
     @Test

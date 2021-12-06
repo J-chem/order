@@ -2,7 +2,6 @@ package com.switchfully.order.domain;
 
 import com.switchfully.order.security.Role;
 
-import java.util.Objects;
 import java.util.UUID;
 
 public class User {
@@ -14,10 +13,10 @@ public class User {
     private final TelephoneNumber telephoneNumber;
 
     private Role role;
-//    private String username;
+    private String username;
     private String password;
 
-    public User(String firstName, String lastName, String email, Address address, TelephoneNumber telephoneNumber, Role role) {
+    public User(String firstName, String lastName, String email, Address address, TelephoneNumber telephoneNumber, Role role, String username, String password) {
         this.id = UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -25,6 +24,8 @@ public class User {
         this.address = address;
         this.telephoneNumber = telephoneNumber;
         this.role = role;
+        this.username = username;
+        this.password = password;
     }
 
     public String getId() {
@@ -56,7 +57,7 @@ public class User {
     }
 
     public String getUsername() {
-        return firstName + lastName;
+        return username;
     }
 
     public String getPassword() {

@@ -14,14 +14,19 @@ public class CreateUserDTO {
     private final TelephoneNumber telephoneNumber;
 
     private final Role role;
+    private final String username;
+    private final String password;
 
-    public CreateUserDTO(String firstName, String lastName, Address address, String email, TelephoneNumber telephoneNumber, Role role) {
+
+    public CreateUserDTO(String firstName, String lastName, Address address, String email, TelephoneNumber telephoneNumber, Role role, String username, String password) {
         this.firstName = Objects.requireNonNull(firstName);
         this.lastName = Objects.requireNonNull(lastName);
         this.address = Objects.requireNonNull(address);
         this.email = Objects.requireNonNull(email);
         this.telephoneNumber = Objects.requireNonNull(telephoneNumber);
         this.role = role;
+        this.username = username;
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -48,4 +53,11 @@ public class CreateUserDTO {
         return role;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }

@@ -6,13 +6,13 @@ public class CreateItemDTO {
     private final String name;
     private final String description;
     private final BigDecimal price;
-    private final int Amount;
+    private final int amount;
 
-    public CreateItemDTO(String name, String description, BigDecimal price, int amount) {
+    public CreateItemDTO(String name, String description, int price, int amount) {
         this.name = name;
         this.description = description;
-        this.price = price;
-        Amount = amount;
+        this.price = BigDecimal.valueOf(price);
+        this.amount = amount;
     }
 
     public String getName() {
@@ -28,6 +28,6 @@ public class CreateItemDTO {
     }
 
     public int getAmount() {
-        return Amount;
+        return amount;
     }
 }

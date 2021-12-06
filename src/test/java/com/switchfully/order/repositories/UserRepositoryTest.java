@@ -23,7 +23,7 @@ class UserRepositoryTest {
         userRepository = new DefaultUserRepository();
         telephoneNumber1 = new TelephoneNumber("03", "1234567");
         address1 = new Address("streetName", "streetNumber", "postalCode", "city");
-        user1 = new User("firstName", "lastName", "email@email.email", address1, telephoneNumber1, Role.CUSTOMER);
+        user1 = new User("firstName", "lastName", "email@email.email", address1, telephoneNumber1, Role.CUSTOMER, "username", "password");
     }
 
     @Nested
