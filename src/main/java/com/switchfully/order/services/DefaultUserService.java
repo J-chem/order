@@ -22,8 +22,8 @@ public class DefaultUserService implements UserService {
 
     @Override
     public UserDTO save(CreateUserDTO createUserDTO) {
-        User savingUser = userMapper.mapDTOtoUSER(createUserDTO);
-        User returnedUser = userRepository.saveUser(savingUser);
+        User toBeSavedUser = userMapper.mapDTOtoUSER(createUserDTO);
+        User returnedUser = userRepository.saveUser(toBeSavedUser);
         return userMapper.mapUSERtoDTO(returnedUser);
     }
 

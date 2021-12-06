@@ -8,15 +8,12 @@ import com.switchfully.order.repositories.UserRepository;
 import com.switchfully.order.security.Features;
 import com.switchfully.order.security.Role;
 import com.switchfully.order.security.SecureUser;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;
 
 @Service
 public class SecurityService {
-//    private final Logger logger = LoggerFactory.getLogger(SecurityService.class);
 
     private final UserRepository userRepository;
 

@@ -51,7 +51,6 @@ class UserControllerTest {
         assertThat(userDTO.getUserId()).isNotBlank();
         assertThat(userDTO.getFirstName()).isEqualTo("firstName");
         assertThat(userDTO.getLastName()).isEqualTo("lastName");
-        // TODO: findout why role == null if this is turned on
-//        assertThat(userDTO.getRole()).isEqualTo(Role.CUSTOMER);
+        assertThat(userDTO.getRole()).isEqualTo(Role.CUSTOMER);
     }
 }

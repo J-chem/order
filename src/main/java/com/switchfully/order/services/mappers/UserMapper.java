@@ -13,7 +13,8 @@ public class UserMapper {
                 createUserDTO.getLastName(),
                 createUserDTO.getEmail(),
                 createUserDTO.getAddress(),
-                createUserDTO.getTelephoneNumber());
+                createUserDTO.getTelephoneNumber(),
+                createUserDTO.getRole());
     }
 
     public UserDTO mapUSERtoDTO(User returnedUser) {

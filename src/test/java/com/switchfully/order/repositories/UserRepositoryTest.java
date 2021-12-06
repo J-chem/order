@@ -3,6 +3,7 @@ package com.switchfully.order.repositories;
 import com.switchfully.order.domain.Address;
 import com.switchfully.order.domain.TelephoneNumber;
 import com.switchfully.order.domain.User;
+import com.switchfully.order.security.Role;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -22,7 +23,7 @@ class UserRepositoryTest {
         userRepository = new DefaultUserRepository();
         telephoneNumber1 = new TelephoneNumber("03", "1234567");
         address1 = new Address("streetName", "streetNumber", "postalCode", "city");
-        user1 = new User("firstName", "lastName", "email@email.email", address1, telephoneNumber1);
+        user1 = new User("firstName", "lastName", "email@email.email", address1, telephoneNumber1, Role.CUSTOMER);
     }
 
     @Nested
