@@ -1,7 +1,6 @@
 package com.switchfully.order.repositories;
 
 import com.switchfully.order.domain.Item;
-import com.switchfully.order.services.dto.ItemDTO;
 import org.springframework.stereotype.Repository;
 
 import java.util.concurrent.ConcurrentHashMap;
