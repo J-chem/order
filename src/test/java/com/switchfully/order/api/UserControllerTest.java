@@ -33,7 +33,7 @@ class UserControllerTest {
     }
 
     @Test
-    void saveBookTest() {
+    void saveUserTest() {
         UserDTO userDTO = RestAssured
                 .given()
                 .body(createUserDTO)
