@@ -47,4 +47,5 @@ public class CreateUserDTO {
     public Role getRole() {
         return role;
     }
+
 }
