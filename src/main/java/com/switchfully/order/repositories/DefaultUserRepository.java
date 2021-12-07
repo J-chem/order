@@ -43,7 +43,7 @@ public class DefaultUserRepository implements UserRepository {
                 .stream()
                 .filter(user -> user.getUsername().equals(username))
                 .findFirst()
-                .orElseThrow(UnknownUserException::new);
+                .orElseThrow(() -> new UnknownUserException("Unknown user"));
     }
 
     @Override

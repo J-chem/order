@@ -47,12 +47,13 @@ public class DefaultOrderService implements OrderService {
                                     ordered.getItemId(),
                                     amount,
                                     shippingDate,
-                                    amount * item.getPrice());
+                                    item.getPrice());
                         })
                 .collect(Collectors.toSet());
 
         Order order = new Order(user.getId(), itemGroupSet);
 
+        // TODO: return total price
         return OrderMapper.map(orderRepository.save(order));
     }
 

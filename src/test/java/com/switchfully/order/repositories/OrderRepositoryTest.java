@@ -1,34 +1,54 @@
 package com.switchfully.order.repositories;
 
-import com.switchfully.order.domain.Item;
-import com.switchfully.order.domain.ItemGroup;
-import com.switchfully.order.domain.Order;
+import com.switchfully.order.domain.*;
+import com.switchfully.order.security.Role;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class OrderRepositoryTest {
 
-//    private DefaultOrderRepository defaultOrderRepository;
-//    private Item item;
-//    private Order order;
-//    private ItemGroup itemGroup;
-//
-//    @BeforeEach
-//    void setUp() {
-//        item = new Item("name", "description", 10, 100);
-//        order = new Order(userId, itemGroups);
-//        itemGroup = new ItemGroup(item.getId(), 5, LocalDate.now().plusDays(1), price);
-//        order.addItem(itemGroup);
-//        defaultOrderRepository = new DefaultOrderRepository();
-//    }
-//
-//    @Test
-//    void whenSavingOrder_thenReturnOrder() {
-//        assertThat(defaultOrderRepository.save(order)).isEqualTo(order);
-//    }
+    private DefaultOrderRepository defaultOrderRepository;
+    private DefaultItemRepository defaultItemRepository;
+    private Item item;
+    private Order order;
+    private User customer;
+    private TelephoneNumber telephoneNumber;
+    private Address address;
+    private ItemGroup itemGroup;
+
+    @BeforeEach
+    void setUp() {
+        telephoneNumber = new TelephoneNumber("03", "1234567");
+        address = new Address(
+                "streetName",
+                "streetNumber",
+                "postalCode",
+                "city");
+        customer = new User(
+                "firstName",
+                "lastName",
+                "email@email.email",
+                address,
+                telephoneNumber,
+                Role.CUSTOMER,
+                "username",
+                "password");
+        item = new Item("name", "description", 10, 100);
+        itemGroup = new ItemGroup(item.getId(), 5, LocalDate.now().plusDays(1), item.getPrice());
+        order = new Order(customer.getId(), Set.of(itemGroup));
+        defaultOrderRepository = new DefaultOrderRepository();
+        defaultItemRepository = new DefaultItemRepository();
+        defaultItemRepository.saveItem(item);
+    }
+
+    @Test
+    void whenSavingOrder_thenReturnOrder() {
+        assertThat(defaultOrderRepository.save(order)).isEqualTo(order);
+    }
 
 }

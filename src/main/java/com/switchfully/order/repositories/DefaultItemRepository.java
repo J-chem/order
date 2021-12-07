@@ -1,9 +1,9 @@
 package com.switchfully.order.repositories;
 
 import com.switchfully.order.domain.Item;
+import com.switchfully.order.exceptions.ItemNotFoundException;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
@@ -23,6 +23,8 @@ public class DefaultItemRepository implements ItemRepository {
 
     @Override
     public Item findById(String itemId) {
-        return stockItems.get(itemId);
+        Item result = stockItems.get(itemId);
+        if (result == null) throw new ItemNotFoundException("Item not found");
+        return result;
     }
 }
