@@ -6,6 +6,7 @@ import com.switchfully.order.domain.User;
 import com.switchfully.order.security.Role;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -40,5 +41,13 @@ public class DefaultUserRepository implements UserRepository {
         return usersById.values()
                 .stream()
                 .filter(user -> user.getUsername().equals(username)).findFirst();
+    }
+
+    @Override
+    public List<User> getAllCustomers() {
+        return usersById.values()
+                .stream()
+                .filter(user -> user.getRole().equals(Role.CUSTOMER))
+                .toList();
     }
 }

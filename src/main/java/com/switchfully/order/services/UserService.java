@@ -8,5 +8,5 @@ import java.util.List;
 public interface UserService {
     UserDTO save(CreateUserDTO createUserDTO);
 
-    List<UserDTO> getAllUsers();
+    List<UserDTO> getAllCustomers(String authorization);
 }

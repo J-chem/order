@@ -8,6 +8,8 @@ import com.switchfully.order.services.dto.UserDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "users", produces = "application/json")
 public class UserController {
@@ -18,6 +20,12 @@ public class UserController {
     public UserController(UserService userService, SecurityService securityService) {
         this.userService = userService;
         this.securityService = securityService;
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<UserDTO> getAllCustomers(@RequestHeader String authorization) {
+        return userService.getAllCustomers(authorization);
     }
 
     @PostMapping(path = "registerCustomer", consumes = "application/json")
