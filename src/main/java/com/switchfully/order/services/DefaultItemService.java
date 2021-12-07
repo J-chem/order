@@ -11,17 +11,21 @@ import org.springframework.stereotype.Service;
 public class DefaultItemService implements ItemService {
 
     private final ItemRepository itemRepository;
-    private final ItemMapper itemMapper;
 
-    public DefaultItemService(ItemRepository itemRepository, ItemMapper itemMapper) {
+    public DefaultItemService(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
-        this.itemMapper = itemMapper;
     }
 
     @Override
     public ItemDTO saveItem(CreateItemDTO createItemDTO) {
-        Item item = itemMapper.mapDTOToItem(createItemDTO);
+        Item item = ItemMapper.map(createItemDTO);
         Item savedItem = itemRepository.saveItem(item);
-        return itemMapper.mapItemToDTO(savedItem);
+        return ItemMapper.map(savedItem);
+    }
+
+    @Override
+    public Item findById(String itemId) {
+        return itemRepository.findById(itemId);
     }
 }
+

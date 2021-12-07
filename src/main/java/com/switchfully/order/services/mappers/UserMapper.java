@@ -3,11 +3,10 @@ package com.switchfully.order.services.mappers;
 import com.switchfully.order.domain.User;
 import com.switchfully.order.services.dto.CreateUserDTO;
 import com.switchfully.order.services.dto.UserDTO;
-import org.springframework.stereotype.Component;
 
-@Component
 public class UserMapper {
-    public User mapDTOtoUSER(CreateUserDTO createUserDTO) {
+
+    public static User mapDTOtoUSER(CreateUserDTO createUserDTO) {
         return new User(
                 createUserDTO.getFirstName(),
                 createUserDTO.getLastName(),
@@ -19,7 +18,7 @@ public class UserMapper {
                 createUserDTO.getPassword());
     }
 
-    public UserDTO mapUSERtoDTO(User returnedUser) {
+    public static UserDTO mapUSERtoDTO(User returnedUser) {
         return new UserDTO(
                 returnedUser.getId(),
                 returnedUser.getFirstName(),

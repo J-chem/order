@@ -5,10 +5,9 @@ import com.switchfully.order.services.dto.CreateItemDTO;
 import com.switchfully.order.services.dto.ItemDTO;
 import org.springframework.stereotype.Component;
 
-@Component
 public class ItemMapper {
 
-    public Item mapDTOToItem(CreateItemDTO createItemDTO) {
+    public static Item map(CreateItemDTO createItemDTO) {
         return new Item(
                 createItemDTO.getName(),
                 createItemDTO.getDescription(),
@@ -17,13 +16,13 @@ public class ItemMapper {
         );
     }
 
-    public ItemDTO mapItemToDTO(Item item) {
+    public static ItemDTO map(Item item) {
         return new ItemDTO.ItemDTOBuilder()
                 .withId(item.getId())
                 .withName(item.getName())
                 .withDescription(item.getDescription())
                 .withPrice(item.getPrice())
-                .withAmount(item.getAmount())
+                .withAmount(item.getStock())
                 .build();
     }
 }

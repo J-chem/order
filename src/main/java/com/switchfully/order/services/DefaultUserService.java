@@ -13,22 +13,21 @@ import java.util.List;
 public class DefaultUserService implements UserService {
 
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
 
-    public DefaultUserService(UserRepository userRepository, UserMapper userMapper) {
+    public DefaultUserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.userMapper = userMapper;
     }
 
     @Override
     public UserDTO save(CreateUserDTO createUserDTO) {
-        User toBeSavedUser = userMapper.mapDTOtoUSER(createUserDTO);
+        User toBeSavedUser = UserMapper.mapDTOtoUSER(createUserDTO);
         User returnedUser = userRepository.saveUser(toBeSavedUser);
-        return userMapper.mapUSERtoDTO(returnedUser);
+        return UserMapper.mapUSERtoDTO(returnedUser);
     }
 
     @Override
     public List<UserDTO> getAllUsers() {
+        // TODO
 //        List<User> users = userRepository
         return null;
     }

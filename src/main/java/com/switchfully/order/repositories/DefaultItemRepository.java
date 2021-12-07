@@ -3,6 +3,7 @@ package com.switchfully.order.repositories;
 import com.switchfully.order.domain.Item;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
@@ -18,5 +19,10 @@ public class DefaultItemRepository implements ItemRepository {
     public Item saveItem(Item item) {
         stockItems.put(item.getId(), item);
         return item;
+    }
+
+    @Override
+    public Item findById(String itemId) {
+        return stockItems.get(itemId);
     }
 }

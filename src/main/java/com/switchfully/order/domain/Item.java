@@ -9,14 +9,14 @@ public class Item {
     private final String name;
     private final String description;
     private final BigDecimal price;
-    private final int Amount;
+    private final int stock;
 
-    public Item(String name, String description, BigDecimal price, int amount) {
+    public Item(String name, String description, BigDecimal price, int stock) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.description = description;
         this.price = price;
-        Amount = amount;
+        this.stock = stock;
     }
 
     public String getId() {
@@ -35,8 +35,8 @@ public class Item {
         return price;
     }
 
-    public int getAmount() {
-        return Amount;
+    public int getStock() {
+        return stock;
     }
 
     @Override
