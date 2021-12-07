@@ -3,7 +3,6 @@ package com.switchfully.order.services.mappers;
 import com.switchfully.order.domain.Item;
 import com.switchfully.order.services.dto.CreateItemDTO;
 import com.switchfully.order.services.dto.ItemDTO;
-import org.springframework.stereotype.Component;
 
 public class ItemMapper {
 

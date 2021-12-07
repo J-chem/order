@@ -1,8 +1,7 @@
 package com.switchfully.order.api;
 
-import com.switchfully.order.security.Features;
+
 import com.switchfully.order.services.ItemService;
-import com.switchfully.order.services.SecurityService;
 import com.switchfully.order.services.dto.CreateItemDTO;
 import com.switchfully.order.services.dto.ItemDTO;
 import org.springframework.http.HttpStatus;
@@ -13,18 +12,15 @@ import org.springframework.web.bind.annotation.*;
 public class ItemController {
 
     private final ItemService itemService;
-    private final SecurityService securityService;
 
-    public ItemController(ItemService itemService, SecurityService securityService) {
+    public ItemController(ItemService itemService) {
         this.itemService = itemService;
-        this.securityService = securityService;
     }
 
-    @PostMapping(path = "postItem", consumes = "application/json")
-    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(consumes = "application/json")
+    @ResponseStatus(HttpStatus.OK)
     public ItemDTO saveItem(@RequestBody CreateItemDTO createItemDTO,
                             @RequestHeader String authorization) {
-        securityService.validateAuthorization(authorization, Features.ADD_ITEM);
-        return itemService.saveItem(createItemDTO);
+        return itemService.saveItem(authorization, createItemDTO);
     }
 }

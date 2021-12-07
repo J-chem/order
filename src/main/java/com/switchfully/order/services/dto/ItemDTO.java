@@ -1,7 +1,5 @@
 package com.switchfully.order.services.dto;
 
-import java.math.BigDecimal;
-
 public class ItemDTO {
     private final String id;
     private final String name;
