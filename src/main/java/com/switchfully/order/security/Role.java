@@ -2,11 +2,11 @@ package com.switchfully.order.security;
 
 import java.util.List;
 
-import static com.switchfully.order.security.Features.ADD_ITEM;
+import static com.switchfully.order.security.Features.*;
 
 public enum Role {
     ADMIN(List.of(ADD_ITEM)),
-    CUSTOMER(List.of());
+    CUSTOMER(List.of(ORDER_ITEM));
 
     private final List<Features> listOfFeatures;
 

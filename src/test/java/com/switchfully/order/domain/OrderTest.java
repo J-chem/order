@@ -1,28 +1,33 @@
 package com.switchfully.order.domain;
 
 import com.switchfully.order.repositories.DefaultItemRepository;
+import com.switchfully.order.security.Role;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class OrderTest {
 
     private Order order;
     private Item item1;
     private Item item2;
+    private User customer;
+    private TelephoneNumber telephoneNumber;
+    private Address address;
     private DefaultItemRepository defaultItemRepository;
 
     @BeforeEach
     void setUp() {
         defaultItemRepository = new DefaultItemRepository();
+        telephoneNumber = new TelephoneNumber("03", "1234567");
+        address = new Address("streetName", "streetNumber", "postalCode", "city");
+        customer = new User("firstName", "lastName", "email@email.email", address, telephoneNumber, Role.CUSTOMER, "username", "password");
         order = new Order();
-        item1 = new Item("name", "description", BigDecimal.TEN, 100);
-        item2 = new Item("name", "description", BigDecimal.TEN, 0);
+        item1 = new Item("name", "description", 10, 100);
+        item2 = new Item("name", "description", 10, 0);
     }
 
     @Test
@@ -46,7 +51,7 @@ class OrderTest {
     }
 
     @Test
-    void whenAddingTwoDifferentItems_theyApperaBothInTheOrder() {
+    void whenAddingTwoDifferentItems_theyAppearBothInTheOrder() {
         ItemGroup itemGroup1 = new ItemGroup(item1.getId(), 5, LocalDate.now().plusDays(1));
         ItemGroup itemGroup2 = new ItemGroup(item2.getId(), 10, LocalDate.now().plusDays(1));
         order.addItem(itemGroup1);

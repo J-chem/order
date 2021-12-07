@@ -19,7 +19,7 @@ class ItemRepositoryTest {
     @BeforeEach
     void setUp() {
         defaultItemRepository = new DefaultItemRepository();
-        item1 = new Item("name", "description", BigDecimal.TEN, 100);
+        item1 = new Item("name", "description", 10, 100);
     }
 
     @Nested

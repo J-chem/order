@@ -1,6 +1,5 @@
 package com.switchfully.order.services;
 
-import com.switchfully.order.domain.Order;
 import com.switchfully.order.services.dto.CreateItemGroupDTO;
 import com.switchfully.order.services.dto.OrderDTO;
 
@@ -8,7 +7,13 @@ import java.time.LocalDate;
 
 public interface OrderService {
 
-    OrderDTO save();
-    void addItemGroup(CreateItemGroupDTO createItemGroupDTO);
-    LocalDate calculateShippingDate(int stock, int ordered);
+    OrderDTO save(String authorization);
+
+    int addItemGroup(String authorization, CreateItemGroupDTO createItemGroupDTO);
+
+    default LocalDate calculateShippingDate(int stock, int ordered) {
+        return (ordered <= stock) ?
+                LocalDate.now().plusDays(1) :
+                LocalDate.now().plusWeeks(1);
+    }
 }

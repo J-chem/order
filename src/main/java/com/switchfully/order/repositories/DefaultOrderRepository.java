@@ -15,7 +15,8 @@ public class DefaultOrderRepository implements OrderRepository {
     }
 
     @Override
-    public void save(Order order) {
+    public Order save(Order order) {
         orders.put(order.getOrderId(), order);
+        return order;
     }
 }

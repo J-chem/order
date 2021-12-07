@@ -1,7 +1,5 @@
 package com.switchfully.order.services.dto;
 
-import java.time.LocalDate;
-
 public class CreateItemGroupDTO {
     private final String itemId;
     private final int amount;
@@ -18,6 +16,4 @@ public class CreateItemGroupDTO {
     public int getAmount() {
         return amount;
     }
-
-
 }

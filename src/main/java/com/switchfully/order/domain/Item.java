@@ -8,10 +8,10 @@ public class Item {
     private String id;
     private final String name;
     private final String description;
-    private final BigDecimal price;
+    private final int price;
     private final int stock;
 
-    public Item(String name, String description, BigDecimal price, int stock) {
+    public Item(String name, String description, int price, int stock) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.description = description;
@@ -31,7 +31,7 @@ public class Item {
         return description;
     }
 
-    public BigDecimal getPrice() {
+    public int getPrice() {
         return price;
     }
 

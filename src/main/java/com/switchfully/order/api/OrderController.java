@@ -19,13 +19,14 @@ public class OrderController {
     // POST
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addItem(@RequestBody CreateItemGroupDTO createItemGroupDTO) {
-        orderService.addItemGroup(createItemGroupDTO);
+    public int addItem(@RequestBody CreateItemGroupDTO createItemGroupDTO,
+                       @RequestHeader String authorization) {
+        return orderService.addItemGroup(authorization, createItemGroupDTO);
     }
 
     @PostMapping(path = "finishOrder")
     @ResponseStatus(HttpStatus.CREATED)
-    public OrderDTO finishOrder() {
-        return orderService.save();
+    public OrderDTO finishOrder(@RequestHeader String authorization) {
+        return orderService.save(authorization);
     }
 }

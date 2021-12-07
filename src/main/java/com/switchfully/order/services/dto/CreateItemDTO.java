@@ -5,13 +5,13 @@ import java.math.BigDecimal;
 public class CreateItemDTO {
     private final String name;
     private final String description;
-    private final BigDecimal price;
+    private final int price;
     private final int amount;
 
     public CreateItemDTO(String name, String description, int price, int amount) {
         this.name = name;
         this.description = description;
-        this.price = BigDecimal.valueOf(price);
+        this.price = price;
         this.amount = amount;
     }
 
@@ -23,7 +23,7 @@ public class CreateItemDTO {
         return description;
     }
 
-    public BigDecimal getPrice() {
+    public int getPrice() {
         return price;
     }
 
