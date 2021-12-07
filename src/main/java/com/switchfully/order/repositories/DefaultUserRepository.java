@@ -3,11 +3,12 @@ package com.switchfully.order.repositories;
 import com.switchfully.order.domain.Address;
 import com.switchfully.order.domain.TelephoneNumber;
 import com.switchfully.order.domain.User;
+import com.switchfully.order.exceptions.UnknownUserException;
 import com.switchfully.order.security.Role;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.NoSuchElementException;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
@@ -37,10 +38,21 @@ public class DefaultUserRepository implements UserRepository {
     }
 
     @Override
-    public Optional<User> getUser(String username) {
+    public User getUserByUsername(String username) {
         return usersById.values()
                 .stream()
-                .filter(user -> user.getUsername().equals(username)).findFirst();
+                .filter(user -> user.getUsername().equals(username))
+                .findFirst()
+                .orElseThrow(UnknownUserException::new);
+    }
+
+    @Override
+    public User getUserBy(String email) {
+        return usersById.values()
+                .stream()
+                .filter(user -> user.getEmail().equals(email))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("No user matched the data"));
     }
 
     @Override

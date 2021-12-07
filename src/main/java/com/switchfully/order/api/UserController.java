@@ -28,6 +28,13 @@ public class UserController {
         return userService.getAllCustomers(authorization);
     }
 
+    @GetMapping(path = "/{email}")
+    @ResponseStatus(HttpStatus.OK)
+    public UserDTO getUserBy(@PathVariable String email,
+                             @RequestHeader String authorization) {
+        return userService.getUserBy(authorization, email);
+    }
+
     @PostMapping(path = "registerCustomer", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public UserDTO createCustomerAccount(@RequestBody CreateUserDTO createUserDTO) {

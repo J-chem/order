@@ -8,7 +8,8 @@ import java.util.Optional;
 public interface UserRepository {
     User saveUser(User user);
 
-    Optional<User> getUser(String username);
+    User getUserByUsername(String username);
+    User getUserBy(String email);
 
     List<User> getAllCustomers();
 }

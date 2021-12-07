@@ -21,7 +21,10 @@ public class DefaultSecurityService implements SecurityService {
     @Override
     public User validateAuthorization(String authorization, Features feature) {
         SecureUser usernamePassword = getUsernamePassword(authorization);
-        User user = userRepository.getUser(usernamePassword.getUsername()).get();
+        User user = userRepository.getUserByUsername(usernamePassword.getUsername());
+        if (user == null) {
+            throw new UnknownUserException("User unknown");
+        }
         if(!doesPasswordMatch(usernamePassword.getPassword(), user.getPassword())) {
             throw new WrongPasswordException();
         }
@@ -30,5 +33,4 @@ public class DefaultSecurityService implements SecurityService {
         }
         return user;
     }
-
 }

@@ -34,4 +34,11 @@ public class DefaultUserService implements UserService {
         List<User> users = userRepository.getAllCustomers();
         return UserMapper.map(users);
     }
+
+    @Override
+    public UserDTO getUserBy(String authorization, String email) {
+        securityService.validateAuthorization(authorization, Features.GET_ALL_CUSTOMERS);
+        User user = userRepository.getUserBy(email);
+        return UserMapper.map(user);
+    }
 }
