@@ -6,6 +6,8 @@ import com.switchfully.order.services.dto.OrderDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "orders", produces = "application/json")
 public class OrderController {
@@ -19,14 +21,9 @@ public class OrderController {
     // POST
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public int addItem(@RequestBody CreateItemGroupDTO createItemGroupDTO,
+    public OrderDTO saveOrder(@RequestBody List<CreateItemGroupDTO> createItemGroupDTO,
                        @RequestHeader String authorization) {
-        return orderService.addItemGroup(authorization, createItemGroupDTO);
+        return orderService.save(authorization, createItemGroupDTO);
     }
 
-    @PostMapping(path = "finishOrder")
-    @ResponseStatus(HttpStatus.CREATED)
-    public OrderDTO finishOrder(@RequestHeader String authorization) {
-        return orderService.save(authorization);
-    }
 }
