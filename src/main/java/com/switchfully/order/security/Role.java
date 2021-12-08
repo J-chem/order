@@ -6,7 +6,7 @@ import static com.switchfully.order.security.Features.*;
 
 public enum Role {
     ADMIN(List.of(ADD_ITEM, GET_ALL_CUSTOMERS)),
-    CUSTOMER(List.of(ORDER_ITEM));
+    CUSTOMER(List.of(ORDER_ITEM, GET_MY_ORDERS));
 
     private final List<Features> listOfFeatures;
 

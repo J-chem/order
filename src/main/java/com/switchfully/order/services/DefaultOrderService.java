@@ -33,7 +33,7 @@ public class DefaultOrderService implements OrderService {
     }
 
     @Override
-    public OrderDTO save(String authorization, List<CreateItemGroupDTO> createItemGroupDTOList) {
+    public OrderDTO placeOrder(String authorization, List<CreateItemGroupDTO> createItemGroupDTOList) {
 
         User user = securityService.validateAuthorization(authorization, Features.ORDER_ITEM);
 
@@ -54,7 +54,16 @@ public class DefaultOrderService implements OrderService {
         Order order = new Order(user.getId(), itemGroupSet);
 
         // TODO: return total price
-        return OrderMapper.map(orderRepository.save(order));
+        return OrderMapper.map(orderRepository.placeOrder(order));
+    }
+
+    @Override
+    public List<OrderDTO> getOrdersByCustomer(String authorization) {
+        User customer = securityService.validateAuthorization(authorization, Features.GET_MY_ORDERS);
+        List<Order> orders = orderRepository.getOrdersByCustomer(customer.getId());
+        return orders.stream()
+                .map(OrderMapper::map)
+                .toList();
     }
 
 }

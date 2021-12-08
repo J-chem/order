@@ -56,7 +56,7 @@ class OrderRepositoryTest {
 
     @Test
     void whenSavingOrder_thenReturnOrder() {
-        assertThat(defaultOrderRepository.save(order)).isEqualTo(order);
+        assertThat(defaultOrderRepository.placeOrder(order)).isEqualTo(order);
     }
 
 }

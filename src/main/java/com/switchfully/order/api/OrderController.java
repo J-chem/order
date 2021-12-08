@@ -21,13 +21,20 @@ public class OrderController {
         this.orderService = orderService;
     }
 
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<OrderDTO> getOrdersByCustomer(@RequestHeader String authorization) {
+        logger.info("Orders: get orders by customer");
+        return orderService.getOrdersByCustomer(authorization);
+    }
+
     // POST
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public OrderDTO saveOrder(@RequestBody List<CreateItemGroupDTO> createItemGroupDTO,
-                       @RequestHeader String authorization) {
+                              @RequestHeader String authorization) {
         logger.info("Orders: save order");
-        return orderService.save(authorization, createItemGroupDTO);
+        return orderService.placeOrder(authorization, createItemGroupDTO);
     }
 
 }

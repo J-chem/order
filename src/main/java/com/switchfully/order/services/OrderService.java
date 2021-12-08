@@ -8,7 +8,9 @@ import java.util.List;
 
 public interface OrderService {
 
-    OrderDTO save(String authorization, List<CreateItemGroupDTO> createItemGroupDTO);
+    OrderDTO placeOrder(String authorization, List<CreateItemGroupDTO> createItemGroupDTO);
+
+    List<OrderDTO> getOrdersByCustomer(String authorization);
 
     default LocalDate calculateShippingDate(int stock, int ordered) {
         return (ordered <= stock) ?
