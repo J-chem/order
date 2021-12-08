@@ -1,4 +1,6 @@
-package com.switchfully.order.domain;
+package com.switchfully.order.domain.orders;
+
+import com.switchfully.order.domain.orders.ItemGroup;
 
 import java.util.*;
 

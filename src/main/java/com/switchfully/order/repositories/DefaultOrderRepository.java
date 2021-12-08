@@ -1,6 +1,6 @@
 package com.switchfully.order.repositories;
 
-import com.switchfully.order.domain.Order;
+import com.switchfully.order.domain.orders.Order;
 import org.springframework.stereotype.Repository;
 
 import java.util.concurrent.ConcurrentHashMap;

@@ -1,11 +1,11 @@
 package com.switchfully.order.services;
 
-import com.switchfully.order.domain.Item;
+import com.switchfully.order.domain.items.Item;
 import com.switchfully.order.repositories.ItemRepository;
 import com.switchfully.order.security.Features;
-import com.switchfully.order.services.dto.CreateItemDTO;
-import com.switchfully.order.services.dto.ItemDTO;
-import com.switchfully.order.services.mappers.ItemMapper;
+import com.switchfully.order.domain.items.dto.CreateItemDTO;
+import com.switchfully.order.domain.items.dto.ItemDTO;
+import com.switchfully.order.domain.items.mappers.ItemMapper;
 import org.springframework.stereotype.Service;
 
 @Service

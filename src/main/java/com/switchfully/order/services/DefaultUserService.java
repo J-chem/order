@@ -1,11 +1,11 @@
 package com.switchfully.order.services;
 
-import com.switchfully.order.domain.User;
+import com.switchfully.order.domain.users.User;
 import com.switchfully.order.repositories.UserRepository;
 import com.switchfully.order.security.Features;
-import com.switchfully.order.services.dto.CreateUserDTO;
-import com.switchfully.order.services.dto.UserDTO;
-import com.switchfully.order.services.mappers.UserMapper;
+import com.switchfully.order.domain.users.dto.CreateUserDTO;
+import com.switchfully.order.domain.users.dto.UserDTO;
+import com.switchfully.order.domain.users.mappers.UserMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

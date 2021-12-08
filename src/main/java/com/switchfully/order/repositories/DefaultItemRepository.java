@@ -1,6 +1,6 @@
 package com.switchfully.order.repositories;
 
-import com.switchfully.order.domain.Item;
+import com.switchfully.order.domain.items.Item;
 import com.switchfully.order.exceptions.ItemNotFoundException;
 import org.springframework.stereotype.Repository;
 

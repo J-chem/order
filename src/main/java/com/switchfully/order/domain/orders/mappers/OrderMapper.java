@@ -1,7 +1,7 @@
-package com.switchfully.order.services.mappers;
+package com.switchfully.order.domain.orders.mappers;
 
-import com.switchfully.order.domain.Order;
-import com.switchfully.order.services.dto.OrderDTO;
+import com.switchfully.order.domain.orders.Order;
+import com.switchfully.order.domain.orders.dto.OrderDTO;
 
 public class OrderMapper {
 

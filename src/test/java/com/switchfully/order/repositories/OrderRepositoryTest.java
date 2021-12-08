@@ -1,6 +1,12 @@
 package com.switchfully.order.repositories;
 
-import com.switchfully.order.domain.*;
+import com.switchfully.order.domain.items.Item;
+import com.switchfully.order.domain.orders.ItemGroup;
+import com.switchfully.order.domain.orders.Order;
+import com.switchfully.order.domain.users.Address;
+import com.switchfully.order.domain.users.TelephoneNumber;
+import com.switchfully.order.domain.users.User;
+import com.switchfully.order.domain.valueobjects.Price;
 import com.switchfully.order.security.Role;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.util.Set;
 
+import static com.switchfully.order.domain.valueobjects.Currency.EUR;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class OrderRepositoryTest {
@@ -38,7 +45,8 @@ class OrderRepositoryTest {
                 Role.CUSTOMER,
                 "username",
                 "password");
-        item = new Item("name", "description", 10, 100);
+        Price price = new Price(10, EUR);
+        item = new Item("name", "description", price, 100);
         itemGroup = new ItemGroup(item.getId(), 5, LocalDate.now().plusDays(1), item.getPrice());
         order = new Order(customer.getId(), Set.of(itemGroup));
         defaultOrderRepository = new DefaultOrderRepository();

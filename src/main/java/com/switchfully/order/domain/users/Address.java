@@ -1,4 +1,4 @@
-package com.switchfully.order.domain;
+package com.switchfully.order.domain.users;
 
 import java.util.Objects;
 

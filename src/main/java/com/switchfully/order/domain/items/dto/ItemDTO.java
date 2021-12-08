@@ -1,13 +1,15 @@
-package com.switchfully.order.services.dto;
+package com.switchfully.order.domain.items.dto;
+
+import com.switchfully.order.domain.valueobjects.Price;
 
 public class ItemDTO {
     private final String id;
     private final String name;
     private final String description;
-    private final int price;
+    private final Price price;
     private final int amount;
 
-    private ItemDTO(String id, String name, String description, int price, int amount) {
+    private ItemDTO(String id, String name, String description, Price price, int amount) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -27,7 +29,7 @@ public class ItemDTO {
         return description;
     }
 
-    public int getPrice() {
+    public Price getPrice() {
         return price;
     }
 
@@ -39,7 +41,7 @@ public class ItemDTO {
         private String id;
         private String name;
         private String description;
-        private int price;
+        private Price price;
         private int amount;
 
         public ItemDTOBuilder withId(String id) {
@@ -57,7 +59,7 @@ public class ItemDTO {
             return this;
         }
 
-        public ItemDTOBuilder withPrice(int price) {
+        public ItemDTOBuilder withPrice(Price price) {
             this.price = price;
             return this;
         }

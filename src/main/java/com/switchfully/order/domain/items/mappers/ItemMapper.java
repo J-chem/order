@@ -1,8 +1,8 @@
-package com.switchfully.order.services.mappers;
+package com.switchfully.order.domain.items.mappers;
 
-import com.switchfully.order.domain.Item;
-import com.switchfully.order.services.dto.CreateItemDTO;
-import com.switchfully.order.services.dto.ItemDTO;
+import com.switchfully.order.domain.items.Item;
+import com.switchfully.order.domain.items.dto.CreateItemDTO;
+import com.switchfully.order.domain.items.dto.ItemDTO;
 
 public class ItemMapper {
 

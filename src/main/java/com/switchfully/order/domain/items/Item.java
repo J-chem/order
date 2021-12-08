@@ -1,6 +1,7 @@
-package com.switchfully.order.domain;
+package com.switchfully.order.domain.items;
 
-import java.math.BigDecimal;
+import com.switchfully.order.domain.valueobjects.Price;
+
 import java.util.Objects;
 import java.util.UUID;
 
@@ -8,10 +9,10 @@ public class Item {
     private String id;
     private final String name;
     private final String description;
-    private final int price;
+    private final Price price;
     private final int stock;
 
-    public Item(String name, String description, int price, int stock) {
+    public Item(String name, String description, Price price, int stock) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.description = description;
@@ -31,7 +32,7 @@ public class Item {
         return description;
     }
 
-    public int getPrice() {
+    public Price getPrice() {
         return price;
     }
 

@@ -1,7 +1,7 @@
-package com.switchfully.order.services.dto;
+package com.switchfully.order.domain.users.dto;
 
-import com.switchfully.order.domain.Address;
-import com.switchfully.order.domain.TelephoneNumber;
+import com.switchfully.order.domain.users.Address;
+import com.switchfully.order.domain.users.TelephoneNumber;
 import com.switchfully.order.security.Role;
 
 import java.util.Objects;

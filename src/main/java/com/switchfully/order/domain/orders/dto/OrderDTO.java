@@ -1,6 +1,6 @@
-package com.switchfully.order.services.dto;
+package com.switchfully.order.domain.orders.dto;
 
-import com.switchfully.order.domain.ItemGroup;
+import com.switchfully.order.domain.orders.ItemGroup;
 
 import java.util.Set;
 

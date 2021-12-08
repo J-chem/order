@@ -1,14 +1,14 @@
 package com.switchfully.order.services;
 
-import com.switchfully.order.domain.ItemGroup;
-import com.switchfully.order.domain.Order;
-import com.switchfully.order.domain.User;
+import com.switchfully.order.domain.orders.ItemGroup;
+import com.switchfully.order.domain.orders.Order;
+import com.switchfully.order.domain.users.User;
 import com.switchfully.order.repositories.ItemRepository;
 import com.switchfully.order.repositories.OrderRepository;
 import com.switchfully.order.security.Features;
-import com.switchfully.order.services.dto.CreateItemGroupDTO;
-import com.switchfully.order.services.dto.OrderDTO;
-import com.switchfully.order.services.mappers.OrderMapper;
+import com.switchfully.order.domain.orders.dto.CreateItemGroupDTO;
+import com.switchfully.order.domain.orders.dto.OrderDTO;
+import com.switchfully.order.domain.orders.mappers.OrderMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

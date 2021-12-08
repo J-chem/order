@@ -1,17 +1,22 @@
-package com.switchfully.order.services.dto;
+package com.switchfully.order.domain.items.dto;
+
+import com.switchfully.order.domain.valueobjects.Currency;
+import com.switchfully.order.domain.valueobjects.Price;
 
 import java.math.BigDecimal;
+
+import static com.switchfully.order.domain.valueobjects.Currency.EUR;
 
 public class CreateItemDTO {
     private final String name;
     private final String description;
-    private final int price;
+    private final Price price;
     private final int amount;
 
-    public CreateItemDTO(String name, String description, int price, int amount) {
+    public CreateItemDTO(String name, String description, double price, int amount) {
         this.name = name;
         this.description = description;
-        this.price = price;
+        this.price = new Price(price, EUR);
         this.amount = amount;
     }
 
@@ -23,7 +28,7 @@ public class CreateItemDTO {
         return description;
     }
 
-    public int getPrice() {
+    public Price getPrice() {
         return price;
     }
 

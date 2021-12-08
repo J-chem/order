@@ -1,27 +1,8 @@
 package com.switchfully.order.api;
 
-import com.switchfully.order.domain.Address;
-import com.switchfully.order.domain.TelephoneNumber;
-import com.switchfully.order.domain.User;
-import com.switchfully.order.repositories.ItemRepository;
-import com.switchfully.order.repositories.UserRepository;
-import com.switchfully.order.security.Role;
-import com.switchfully.order.services.ItemService;
-import com.switchfully.order.services.dto.CreateItemDTO;
-import com.switchfully.order.services.dto.ItemDTO;
-import io.restassured.RestAssured;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpStatus;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-
-import static io.restassured.http.ContentType.JSON;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

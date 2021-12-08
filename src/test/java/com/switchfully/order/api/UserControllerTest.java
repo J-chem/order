@@ -1,10 +1,10 @@
 package com.switchfully.order.api;
 
-import com.switchfully.order.domain.Address;
-import com.switchfully.order.domain.TelephoneNumber;
+import com.switchfully.order.domain.users.Address;
+import com.switchfully.order.domain.users.TelephoneNumber;
 import com.switchfully.order.security.Role;
-import com.switchfully.order.services.dto.CreateUserDTO;
-import com.switchfully.order.services.dto.UserDTO;
+import com.switchfully.order.domain.users.dto.CreateUserDTO;
+import com.switchfully.order.domain.users.dto.UserDTO;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

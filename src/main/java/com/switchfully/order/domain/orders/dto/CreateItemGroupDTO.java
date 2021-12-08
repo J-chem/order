@@ -1,4 +1,4 @@
-package com.switchfully.order.services.dto;
+package com.switchfully.order.domain.orders.dto;
 
 public class CreateItemGroupDTO {
     private final String itemId;

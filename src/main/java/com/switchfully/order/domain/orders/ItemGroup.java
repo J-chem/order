@@ -1,5 +1,7 @@
-package com.switchfully.order.domain;
+package com.switchfully.order.domain.orders;
 
+
+import com.switchfully.order.domain.valueobjects.Price;
 
 import java.time.LocalDate;
 
@@ -7,9 +9,9 @@ public class ItemGroup {
     private final String itemId;
     private final int amount;
     private final LocalDate shippingDate;
-    private final int price;
+    private final Price price;
 
-    public ItemGroup(String itemId, int amount, LocalDate shippingDate, int price) {
+    public ItemGroup(String itemId, int amount, LocalDate shippingDate, Price price) {
         this.itemId = itemId;
         this.amount = amount;
         this.shippingDate = shippingDate;
@@ -28,5 +30,7 @@ public class ItemGroup {
         return shippingDate;
     }
 
-
+    public Price getPrice() {
+        return price;
+    }
 }

@@ -1,8 +1,8 @@
-package com.switchfully.order.services.mappers;
+package com.switchfully.order.domain.users.mappers;
 
-import com.switchfully.order.domain.User;
-import com.switchfully.order.services.dto.CreateUserDTO;
-import com.switchfully.order.services.dto.UserDTO;
+import com.switchfully.order.domain.users.User;
+import com.switchfully.order.domain.users.dto.CreateUserDTO;
+import com.switchfully.order.domain.users.dto.UserDTO;
 
 import java.util.List;
 

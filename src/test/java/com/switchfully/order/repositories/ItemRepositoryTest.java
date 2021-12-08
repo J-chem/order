@@ -1,12 +1,14 @@
 package com.switchfully.order.repositories;
 
-import com.switchfully.order.domain.Item;
+import com.switchfully.order.domain.items.Item;
+import com.switchfully.order.domain.valueobjects.Price;
 import com.switchfully.order.exceptions.ItemNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import static com.switchfully.order.domain.valueobjects.Currency.EUR;
 import static org.assertj.core.api.Assertions.*;
 
 class ItemRepositoryTest {
@@ -18,7 +20,8 @@ class ItemRepositoryTest {
     @BeforeEach
     void setUp() {
         defaultItemRepository = new DefaultItemRepository();
-        item1 = new Item("name", "description", 10, 100);
+        Price price = new Price(10, EUR);
+        item1 = new Item("name", "description", price, 100);
     }
 
     @Nested

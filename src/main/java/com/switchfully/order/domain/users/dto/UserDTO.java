@@ -1,4 +1,4 @@
-package com.switchfully.order.services.dto;
+package com.switchfully.order.domain.users.dto;
 
 import com.switchfully.order.security.Role;
 

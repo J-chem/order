@@ -1,5 +1,7 @@
-package com.switchfully.order.domain;
+package com.switchfully.order.domain.users;
 
+import com.switchfully.order.domain.users.Address;
+import com.switchfully.order.domain.users.TelephoneNumber;
 import com.switchfully.order.security.Role;
 
 import java.util.UUID;

@@ -1,8 +1,6 @@
 package com.switchfully.order.repositories;
 
-import com.switchfully.order.domain.Item;
-
-import java.util.Optional;
+import com.switchfully.order.domain.items.Item;
 
 public interface ItemRepository {
     Item saveItem(Item item);

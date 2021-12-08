@@ -1,7 +1,7 @@
 package com.switchfully.order.services;
 
-import com.switchfully.order.services.dto.CreateItemGroupDTO;
-import com.switchfully.order.services.dto.OrderDTO;
+import com.switchfully.order.domain.orders.dto.CreateItemGroupDTO;
+import com.switchfully.order.domain.orders.dto.OrderDTO;
 
 import java.time.LocalDate;
 import java.util.List;
