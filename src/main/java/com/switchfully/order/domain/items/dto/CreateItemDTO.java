@@ -15,10 +15,9 @@ public class CreateItemDTO {
     private final String description;
     @NotBlank(message = "Price is mandatory")
     private final Price price;
-    @NotBlank(message = "amount is mandatory")
-    private final Integer stock;
+    private final int stock;
 
-    public CreateItemDTO(String name, String description, Price price, Integer stock) {
+    public CreateItemDTO(String name, String description, Price price, int stock) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -37,7 +36,7 @@ public class CreateItemDTO {
         return price;
     }
 
-    public Integer getStock() {
+    public int getStock() {
         return stock;
     }
 }

@@ -31,7 +31,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@Disabled
 class ItemControllerTest {
 
     @LocalServerPort
@@ -85,7 +84,7 @@ class ItemControllerTest {
                 .post("items")
                 .then()
                 .assertThat()
-                .statusCode(HttpStatus.OK.value())
+                .statusCode(HttpStatus.CREATED.value())
                 .extract()
                 .as(ItemDTO.class);
 
