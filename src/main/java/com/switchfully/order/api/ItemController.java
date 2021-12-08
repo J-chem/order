@@ -24,7 +24,7 @@ public class ItemController {
     }
 
     @PostMapping(consumes = "application/json")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public ItemDTO saveItem(@Valid @RequestBody CreateItemDTO createItemDTO,
                             @RequestHeader String authorization) {
         logger.info("Items: save item");

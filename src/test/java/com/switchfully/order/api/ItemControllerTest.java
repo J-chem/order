@@ -83,7 +83,7 @@ class ItemControllerTest {
                 .post("items")
                 .then()
                 .assertThat()
-                .statusCode(HttpStatus.CREATED.value())
+                .statusCode(HttpStatus.OK.value())
                 .extract()
                 .as(ItemDTO.class);
 
