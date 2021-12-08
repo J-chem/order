@@ -2,19 +2,27 @@ package com.switchfully.order.domain.items.dto;
 
 import com.switchfully.order.domain.valueobjects.Price;
 
-import static com.switchfully.order.domain.valueobjects.Currency.EUR;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 public class CreateItemDTO {
+    @NotNull
+    @NotBlank(message = "Name is mandatory")
     private final String name;
+    @NotNull
+    @NotBlank(message = "Description is mandatory")
     private final String description;
+    @NotBlank(message = "Price is mandatory")
     private final Price price;
-    private final int amount;
+    @NotBlank(message = "amount is mandatory")
+    private final Integer stock;
 
-    public CreateItemDTO(String name, String description, Price price, int amount) {
+    public CreateItemDTO(String name, String description, Price price, Integer stock) {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.amount = amount;
+        this.stock = Objects.requireNonNull(stock);
     }
 
     public String getName() {
@@ -29,7 +37,7 @@ public class CreateItemDTO {
         return price;
     }
 
-    public int getAmount() {
-        return amount;
+    public Integer getStock() {
+        return stock;
     }
 }

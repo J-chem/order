@@ -11,7 +11,7 @@ public class ItemMapper {
                 createItemDTO.getName(),
                 createItemDTO.getDescription(),
                 createItemDTO.getPrice(),
-                createItemDTO.getAmount()
+                createItemDTO.getStock()
         );
     }
 

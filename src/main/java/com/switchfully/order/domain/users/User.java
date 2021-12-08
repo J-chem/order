@@ -4,14 +4,24 @@ import com.switchfully.order.domain.users.Address;
 import com.switchfully.order.domain.users.TelephoneNumber;
 import com.switchfully.order.security.Role;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 import java.util.UUID;
 
 public class User {
+
     private final String id;
+    @NotNull
+    @NotBlank
     private final String firstName;
+    @NotNull
+    @NotBlank
     private final String lastName;
+    @Email
     private final String email;
+    @NotNull
     private final Address address;
     private final TelephoneNumber telephoneNumber;
 

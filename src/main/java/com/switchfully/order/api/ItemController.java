@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(path = "items", produces = "application/json")
 public class ItemController {
@@ -23,7 +25,7 @@ public class ItemController {
 
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public ItemDTO saveItem(@RequestBody CreateItemDTO createItemDTO,
+    public ItemDTO saveItem(@Valid @RequestBody CreateItemDTO createItemDTO,
                             @RequestHeader String authorization) {
         logger.info("Items: save item");
         return itemService.saveItem(authorization, createItemDTO);
