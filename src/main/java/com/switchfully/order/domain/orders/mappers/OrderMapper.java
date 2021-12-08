@@ -20,7 +20,7 @@ public class OrderMapper {
         return new OverviewItemGroupDTO()
                 .setItemName(item.getName())
                 .setAmount(itemGroup.getAmount())
-                .setPrice(item.getPrice());
+                .setPrice(itemGroup.getPrice());
     }
 
 }
