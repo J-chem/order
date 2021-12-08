@@ -7,14 +7,14 @@ public class ItemDTO {
     private final String name;
     private final String description;
     private final Price price;
-    private final int amount;
+    private final int stock;
 
-    private ItemDTO(String id, String name, String description, Price price, int amount) {
+    private ItemDTO(String id, String name, String description, Price price, int stock) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.amount = amount;
+        this.stock = stock;
     }
 
     public String getId() {
@@ -33,8 +33,8 @@ public class ItemDTO {
         return price;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getStock() {
+        return stock;
     }
 
     public static class ItemDTOBuilder {

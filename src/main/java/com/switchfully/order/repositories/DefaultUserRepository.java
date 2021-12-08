@@ -22,7 +22,7 @@ public class DefaultUserRepository implements UserRepository {
     }
 
     private void addAdmin() {
-        User admin = new User("hardCodeAdmin", "hardCodeAdmin", "email@email.email",
+        User admin = new User("hardCodeAdmin", "hardCodeAdmin", "test@email.com",
                 new Address("streetName", "streetNumber", "postalCode", "city"),
                 new TelephoneNumber("03", "1234567"),
                 Role.ADMIN,

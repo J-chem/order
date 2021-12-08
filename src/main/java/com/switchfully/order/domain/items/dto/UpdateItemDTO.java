@@ -4,16 +4,16 @@ import com.switchfully.order.domain.valueobjects.Price;
 
 import static com.switchfully.order.domain.valueobjects.Currency.EUR;
 
-public class CreateItemDTO {
+public class UpdateItemDTO {
     private final String name;
     private final String description;
     private final Price price;
     private final int amount;
 
-    public CreateItemDTO(String name, String description, Price price, int amount) {
+    public UpdateItemDTO(String name, String description, double price, int amount) {
         this.name = name;
         this.description = description;
-        this.price = price;
+        this.price = new Price(price, EUR);
         this.amount = amount;
     }
 

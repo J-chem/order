@@ -1,6 +1,7 @@
 package com.switchfully.order.services;
 
 import com.switchfully.order.domain.items.Item;
+import com.switchfully.order.domain.items.dto.UpdateItemDTO;
 import com.switchfully.order.repositories.ItemRepository;
 import com.switchfully.order.security.Features;
 import com.switchfully.order.domain.items.dto.CreateItemDTO;
@@ -30,6 +31,11 @@ public class DefaultItemService implements ItemService {
     @Override
     public Item findById(String itemId) {
         return itemRepository.findById(itemId);
+    }
+
+    @Override
+    public ItemDTO updateItem(String authorization, UpdateItemDTO updateItemDTO) {
+        return null;
     }
 }
 

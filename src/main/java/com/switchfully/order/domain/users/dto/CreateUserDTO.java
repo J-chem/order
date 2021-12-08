@@ -18,7 +18,7 @@ public class CreateUserDTO {
     private final String password;
 
 
-    public CreateUserDTO(String firstName, String lastName, Address address, String email, TelephoneNumber telephoneNumber, Role role, String username, String password) {
+    public CreateUserDTO(String firstName, String lastName, String email, Address address, TelephoneNumber telephoneNumber, Role role, String username, String password) {
         this.firstName = Objects.requireNonNull(firstName);
         this.lastName = Objects.requireNonNull(lastName);
         this.address = Objects.requireNonNull(address);

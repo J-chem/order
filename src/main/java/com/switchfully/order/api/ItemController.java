@@ -1,6 +1,7 @@
 package com.switchfully.order.api;
 
 
+import com.switchfully.order.domain.items.dto.UpdateItemDTO;
 import com.switchfully.order.services.ItemService;
 import com.switchfully.order.domain.items.dto.CreateItemDTO;
 import com.switchfully.order.domain.items.dto.ItemDTO;
@@ -10,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "items")
+@RequestMapping(path = "items", produces = "application/json")
 public class ItemController {
 
     private final Logger logger = LoggerFactory.getLogger(ItemController.class);
@@ -20,11 +21,19 @@ public class ItemController {
         this.itemService = itemService;
     }
 
-    @PostMapping(consumes = "application/json", produces = "application/json")
-    @ResponseStatus(HttpStatus.OK)
+    @PostMapping(consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
     public ItemDTO saveItem(@RequestBody CreateItemDTO createItemDTO,
                             @RequestHeader String authorization) {
         logger.info("Items: save item");
         return itemService.saveItem(authorization, createItemDTO);
+    }
+
+    @PutMapping(consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ItemDTO updateItem(@RequestBody UpdateItemDTO updateItemDTO,
+                              @RequestHeader String authorization) {
+        logger.info("Items: updateItem");
+        return itemService.updateItem(authorization, updateItemDTO);
     }
 }
