@@ -13,6 +13,7 @@ import com.switchfully.order.repositories.UserRepository;
 import com.switchfully.order.security.Role;
 import com.switchfully.order.services.ItemService;
 import io.restassured.RestAssured;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@Disabled
 class ItemControllerTest {
 
     @LocalServerPort
