@@ -1,5 +1,6 @@
 package com.switchfully.order.api;
 
+import com.switchfully.order.domain.orders.dto.OverviewDTO;
 import com.switchfully.order.services.OrderService;
 import com.switchfully.order.domain.orders.dto.CreateItemGroupDTO;
 import com.switchfully.order.domain.orders.dto.OrderDTO;
@@ -23,7 +24,7 @@ public class OrderController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<OrderDTO> getOrdersByCustomer(@RequestHeader String authorization) {
+    public OverviewDTO getOrdersByCustomer(@RequestHeader String authorization) {
         logger.info("Orders: get orders by customer");
         return orderService.getOrdersByCustomer(authorization);
     }

@@ -1,9 +1,6 @@
 package com.switchfully.order.domain.items.dto;
 
-import com.switchfully.order.domain.valueobjects.Currency;
 import com.switchfully.order.domain.valueobjects.Price;
-
-import java.math.BigDecimal;
 
 import static com.switchfully.order.domain.valueobjects.Currency.EUR;
 

@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "items", produces = "application/json")
+@RequestMapping(path = "items")
 public class ItemController {
 
     private final Logger logger = LoggerFactory.getLogger(ItemController.class);
@@ -20,7 +20,7 @@ public class ItemController {
         this.itemService = itemService;
     }
 
-    @PostMapping(consumes = "application/json")
+    @PostMapping(consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public ItemDTO saveItem(@RequestBody CreateItemDTO createItemDTO,
                             @RequestHeader String authorization) {

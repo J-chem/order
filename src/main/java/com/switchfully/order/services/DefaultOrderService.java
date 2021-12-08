@@ -2,6 +2,8 @@ package com.switchfully.order.services;
 
 import com.switchfully.order.domain.orders.ItemGroup;
 import com.switchfully.order.domain.orders.Order;
+import com.switchfully.order.domain.orders.dto.OverviewDTO;
+import com.switchfully.order.domain.orders.dto.OverviewOrderDTO;
 import com.switchfully.order.domain.users.User;
 import com.switchfully.order.repositories.ItemRepository;
 import com.switchfully.order.repositories.OrderRepository;
@@ -22,14 +24,12 @@ public class DefaultOrderService implements OrderService {
     private final ItemRepository itemRepository;
     private final SecurityService securityService;
 
-
     public DefaultOrderService(OrderRepository orderRepository,
                                ItemRepository itemRepository,
                                SecurityService securityService) {
         this.orderRepository = orderRepository;
         this.itemRepository = itemRepository;
         this.securityService = securityService;
-
     }
 
     @Override
@@ -39,16 +39,16 @@ public class DefaultOrderService implements OrderService {
 
         Set<ItemGroup> itemGroupSet = createItemGroupDTOList.stream()
                 .map(ordered -> {
-                            var item = itemRepository.findById(ordered.getItemId());
-                            var amount = ordered.getAmount();
-                            var shippingDate = calculateShippingDate(item.getStock(), amount);
-                            return
+                    var item = itemRepository.findById(ordered.getItemId());
+                    var amount = ordered.getAmount();
+                    var shippingDate = calculateShippingDate(item.getStock(), amount);
+                    return
                             new ItemGroup(
                                     ordered.getItemId(),
                                     amount,
                                     shippingDate,
                                     item.getPrice());
-                        })
+                })
                 .collect(Collectors.toSet());
 
         Order order = new Order(user.getId(), itemGroupSet);
@@ -58,12 +58,22 @@ public class DefaultOrderService implements OrderService {
     }
 
     @Override
-    public List<OrderDTO> getOrdersByCustomer(String authorization) {
-        User customer = securityService.validateAuthorization(authorization, Features.GET_MY_ORDERS);
-        List<Order> orders = orderRepository.getOrdersByCustomer(customer.getId());
-        return orders.stream()
-                .map(OrderMapper::map)
-                .toList();
-    }
+    public OverviewDTO getOrdersByCustomer(String authorization) {
 
+        User customer = securityService.validateAuthorization(authorization, Features.GET_MY_ORDERS);
+
+        List<Order> orders = orderRepository.getOrdersByCustomer(customer.getId());
+
+        return new OverviewDTO(orders.stream()
+                .map(order -> {
+                    var itemGroups = order.getItemGroups();
+                    var itemGroupsMappedToDTO = itemGroups.stream()
+                            .map(itemGroup -> {
+                                var item = itemRepository.findById(itemGroup.getItemId());
+                                return OrderMapper.map(itemGroup, item);
+                            }).collect(Collectors.toSet());
+                    return new OverviewOrderDTO(order.getOrderId(), itemGroupsMappedToDTO);
+                })
+                .toList());
+    }
 }
