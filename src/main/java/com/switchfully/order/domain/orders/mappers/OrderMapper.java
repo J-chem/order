@@ -12,7 +12,8 @@ public class OrderMapper {
         return new OrderDTO()
                 .setOrderId(order.getOrderId())
                 .setUserId(order.getUserId())
-                .setItemGroups(order.getItemGroups());
+                .setItemGroups(order.getItemGroups())
+                .setTotalPrice(order.getItemGroups());
     }
 
     public static OverviewItemGroupDTO map(ItemGroup itemGroup, Item item) {

@@ -1,5 +1,6 @@
 package com.switchfully.order.services;
 
+import com.switchfully.order.domain.items.Item;
 import com.switchfully.order.domain.orders.ItemGroup;
 import com.switchfully.order.domain.orders.Order;
 import com.switchfully.order.domain.orders.dto.OverviewDTO;
@@ -13,6 +14,7 @@ import com.switchfully.order.domain.orders.dto.OrderDTO;
 import com.switchfully.order.domain.orders.mappers.OrderMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -34,36 +36,37 @@ public class DefaultOrderService implements OrderService {
 
     @Override
     public OrderDTO placeOrder(String authorization, List<CreateItemGroupDTO> createItemGroupDTOList) {
-
         User user = securityService.validateAuthorization(authorization, Features.ORDER_ITEM);
-
-        Set<ItemGroup> itemGroupSet = createItemGroupDTOList.stream()
-                .map(ordered -> {
-                    var item = itemRepository.findById(ordered.getItemId());
-                    var amount = ordered.getAmount();
-                    var shippingDate = calculateShippingDate(item.getStock(), amount);
-                    return
-                            new ItemGroup(
-                                    ordered.getItemId(),
-                                    amount,
-                                    shippingDate,
-                                    item.getPrice());
-                })
-                .collect(Collectors.toSet());
-
+        Set<ItemGroup> itemGroupSet = getItemGroups(createItemGroupDTOList);
         Order order = new Order(user.getId(), itemGroupSet);
-
-        // TODO: return total price
         return OrderMapper.map(orderRepository.placeOrder(order));
+    }
+
+    private Set<ItemGroup> getItemGroups(List<CreateItemGroupDTO> createItemGroupDTOList) {
+        return createItemGroupDTOList.stream()
+                .map(this::mapDTOtoItemGroup)
+                .collect(Collectors.toSet());
+    }
+
+    private ItemGroup mapDTOtoItemGroup(CreateItemGroupDTO ordered) {
+        Item item = itemRepository.findById(ordered.getItemId());
+        int orderedAmount = ordered.getAmount();
+        LocalDate shippingDate = calculateShippingDate(item.getStock(), orderedAmount);
+        return createItemGroup(ordered, item, orderedAmount, shippingDate);
+    }
+
+    private ItemGroup createItemGroup(CreateItemGroupDTO ordered, Item item, int orderedAmount, LocalDate shippingDate) {
+        return new ItemGroup(
+                ordered.getItemId(),
+                orderedAmount,
+                shippingDate,
+                item.getPrice());
     }
 
     @Override
     public OverviewDTO getOrdersByCustomer(String authorization) {
-
         User customer = securityService.validateAuthorization(authorization, Features.GET_MY_ORDERS);
-
         List<Order> orders = orderRepository.getOrdersByCustomer(customer.getId());
-
         return new OverviewDTO(orders.stream()
                 .map(order -> {
                     var itemGroups = order.getItemGroups();
