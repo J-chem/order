@@ -27,4 +27,9 @@ public class DefaultItemRepository implements ItemRepository {
         if (result == null) throw new ItemNotFoundException("Item not found");
         return result;
     }
+
+    @Override
+    public Item updateItem(Item item) {
+        return stockItems.put(item.getId(), item);
+    }
 }

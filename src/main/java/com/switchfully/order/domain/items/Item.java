@@ -6,20 +6,23 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class Item {
-    private String id;
-    private final String name;
-    private final String description;
-    private final Price price;
-    private final int stock;
+    // INSTANCE VARIABLES
+    private final String id;
+    private String name;
+    private String description;
+    private Price price;
+    private int stock;
 
+    // CONSTRUCTORS
     public Item(String name, String description, Price price, int stock) {
         this.id = UUID.randomUUID().toString();
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.stock = stock;
+        setName(name);
+        setDescription(description);
+        setPrice(price);
+        setStock(stock);
     }
 
+    // GETTERS
     public String getId() {
         return id;
     }
@@ -40,6 +43,24 @@ public class Item {
         return stock;
     }
 
+    // SETTERS
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPrice(Price price) {
+        this.price = price;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    // METHODS
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

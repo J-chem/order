@@ -2,19 +2,17 @@ package com.switchfully.order.domain.items.dto;
 
 import com.switchfully.order.domain.valueobjects.Price;
 
-import static com.switchfully.order.domain.valueobjects.Currency.EUR;
-
 public class UpdateItemDTO {
     private final String name;
     private final String description;
     private final Price price;
-    private final int amount;
+    private final int stock;
 
-    public UpdateItemDTO(String name, String description, double price, int amount) {
+    public UpdateItemDTO(String name, String description, Price price, int stock) {
         this.name = name;
         this.description = description;
-        this.price = new Price(price, EUR);
-        this.amount = amount;
+        this.price = price;
+        this.stock = stock;
     }
 
     public String getName() {
@@ -29,7 +27,7 @@ public class UpdateItemDTO {
         return price;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getStock() {
+        return stock;
     }
 }

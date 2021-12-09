@@ -7,6 +7,7 @@ import com.switchfully.order.domain.items.dto.CreateItemDTO;
 import com.switchfully.order.domain.items.dto.ItemDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(path = "items", produces = "application/json")
+
 public class ItemController {
 
     private final Logger logger = LoggerFactory.getLogger(ItemController.class);
@@ -31,11 +33,12 @@ public class ItemController {
         return itemService.saveItem(authorization, createItemDTO);
     }
 
-    @PutMapping(consumes = "application/json")
+    @PutMapping(path = "/{itemId}", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public ItemDTO updateItem(@RequestBody UpdateItemDTO updateItemDTO,
+    public ItemDTO updateItem(@PathVariable String itemId,
+                              @RequestBody UpdateItemDTO updateItemDTO,
                               @RequestHeader String authorization) {
         logger.info("Items: updateItem");
-        return itemService.updateItem(authorization, updateItemDTO);
+        return itemService.updateItem(authorization, itemId, updateItemDTO);
     }
 }

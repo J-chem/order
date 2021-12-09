@@ -26,8 +26,8 @@ public class DefaultUserRepository implements UserRepository {
                 new Address("streetName", "streetNumber", "postalCode", "city"),
                 new TelephoneNumber("03", "1234567"),
                 Role.ADMIN,
-                "hardCodeAdmin",
-                "hardCodeAdmin");
+                "username",
+                "password");
         usersById.put(admin.getId(), admin);
     }
 

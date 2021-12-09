@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 
 import java.nio.charset.StandardCharsets;
@@ -31,21 +32,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@Profile("endToEnd")
 class ItemControllerTest {
 
     @LocalServerPort
     private int port;
 
-    private final ItemService itemService;
-    private final ItemRepository itemRepository;
-    private final UserController userController;
 
     @Autowired
-    ItemControllerTest(ItemService itemService, ItemRepository itemRepository, UserController userController) {
-        this.itemService = itemService;
-        this.itemRepository = itemRepository;
-        this.userController = userController;
-    }
+    private ItemService itemService;
+    @Autowired
+    private ItemRepository itemRepository;
+    @Autowired
+    private UserController userController;
 
     @Test
     void saveItemTest() {
@@ -67,18 +66,23 @@ class ItemControllerTest {
 
         userController.registerCustomer(admin);
 
+
         CreateItemDTO createItemDTO = new CreateItemDTO(
                 "name",
                 "description",
                 new Price(10, Currency.EUR),
                 100);
 
+        // END TO END
         ItemDTO itemDTO = RestAssured
                 .given()
                 .body(createItemDTO)
                 .accept(JSON)
                 .contentType(JSON)
-                .header("authorization", generateBase64Authorization("username", "password"))
+                .auth()
+                .preemptive()
+                .basic("username", "password")
+//                .header("authorization", generateBase64Authorization("username", "password"))
                 .when()
                 .port(port)
                 .post("items")
@@ -88,6 +92,7 @@ class ItemControllerTest {
                 .extract()
                 .as(ItemDTO.class);
 
+        // INTEGRATION
         assertThat(itemDTO.getStock()).isEqualTo(100);
         assertThat(itemDTO.getDescription()).isEqualTo("description");
         assertThat(itemDTO.getName()).isEqualTo("name");

@@ -4,12 +4,14 @@ import com.switchfully.order.domain.users.Address;
 import com.switchfully.order.domain.users.TelephoneNumber;
 import com.switchfully.order.security.Role;
 
+import javax.validation.constraints.Email;
 import java.util.Objects;
 
 public class CreateUserDTO {
     private final String firstName;
     private final String lastName;
     private final Address address;
+    @Email
     private final String email;
     private final TelephoneNumber telephoneNumber;
 

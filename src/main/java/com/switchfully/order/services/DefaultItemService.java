@@ -3,11 +3,12 @@ package com.switchfully.order.services;
 import com.switchfully.order.domain.items.Item;
 import com.switchfully.order.domain.items.dto.UpdateItemDTO;
 import com.switchfully.order.repositories.ItemRepository;
-import com.switchfully.order.security.Features;
 import com.switchfully.order.domain.items.dto.CreateItemDTO;
 import com.switchfully.order.domain.items.dto.ItemDTO;
 import com.switchfully.order.domain.items.mappers.ItemMapper;
 import org.springframework.stereotype.Service;
+
+import static com.switchfully.order.security.Features.*;
 
 @Service
 public class DefaultItemService implements ItemService {
@@ -22,20 +23,32 @@ public class DefaultItemService implements ItemService {
 
     @Override
     public ItemDTO saveItem(String authorization, CreateItemDTO createItemDTO) {
-        securityService.validateAuthorization(authorization, Features.ADD_ITEM);
+        securityService.validateAuthorization(authorization, ADD_ITEM);
         Item item = ItemMapper.map(createItemDTO);
         Item savedItem = itemRepository.saveItem(item);
         return ItemMapper.map(savedItem);
     }
 
     @Override
-    public Item findById(String itemId) {
-        return itemRepository.findById(itemId);
-    }
-
-    @Override
-    public ItemDTO updateItem(String authorization, UpdateItemDTO updateItemDTO) {
-        return null;
+    public ItemDTO updateItem(String authorization, String itemId, UpdateItemDTO updateItemDTO) {
+        securityService.validateAuthorization(authorization, UPDATE_ITEM);
+        Item item = itemRepository.findById(itemId);
+        if (item != null) {
+            if (updateItemDTO.getName() != null) {
+                item.setName(updateItemDTO.getName());
+            }
+            if (updateItemDTO.getDescription() != null) {
+                item.setDescription(updateItemDTO.getDescription());
+            }
+            if (updateItemDTO.getPrice() != null) {
+                item.setPrice(updateItemDTO.getPrice());
+            }
+            if (updateItemDTO.getStock() != item.getStock()) {
+                item.setStock(updateItemDTO.getStock());
+            }
+        }
+        Item updatedItem = itemRepository.updateItem(item);
+        return ItemMapper.map(updatedItem);
     }
 }
 
